@@ -21,36 +21,6 @@ app.use((req, _res, next) => {
  app.use('/products', productsRoutes);
  app.use('/price-calculation', priceRoutes);
 
- // Business Logic: 
-  // Price Calculation - POST /price-calculation
-    // if pricingProfileId is not provided, use the default pricing profile
-    // if pricingProfileId is provided but the product is not in the pricing profile, use the global wholesale price
-    // if pricingProfileId is provided and the product is in the pricing profile, use the pricing profile price
-    // payload: {
-    //   productItemIds: [
-    //     '1',
-    //     '2',
-    //     '3',
-    //   ],
-    //   pricingProfileId: '1', // optional, but if provided check if the product is in the profile then use that price, if not use the global wholesale price
-    // }
-    // response: {
-    //   productItemsPriceAdjusted: [
-    //     {
-    //       productId: '1',
-    //       new_price: 110.00,
-    //     },
-    //     {
-    //       productId: '2',
-    //       new_price: 120.00,
-    //     },
-    //     {
-    //       productId: '3',
-    //       new_price: 130.00,
-    //     },
-    //   ],
-    // }
-
 // Swagger
 const swaggerDefinition = {
   openapi: '3.0.0',

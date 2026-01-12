@@ -1,22 +1,31 @@
 // Pricing Profile Schema - Defines the structure of a pricing profile
 // This is used to validate the pricing profile data
 
-const types = {
-  selectionType: {
-    type: String,
-    enum: ['all', 'multiple', 'single'],
-    required: true,
-  },
-}
+const selectionType = ['all', 'multiple', 'single', 'one'];
+const adjustmentTypes = ['none', 'fixed', 'dynamic', 'percentage'];
+const adjustmentOperations = ['none', 'increment', 'decrement', 'increase', 'decrease'];
 
 const PricingProfileSchema = {
   id: { type: String, required: true },
   name: { type: String, required: true },
-  basedOn: { type: String, required: true },
-  adjustmentType: { type: String, required: true },
-  adjustmentOp: { type: String, required: true },
-  adjustmentValue: { type: Number, required: true },
-  productIds: { type: [String], required: true },
-  selectionType: { type: String, enum: types.selectionType, default: 'all' },
+  description: { type: String },
+  status: { type: String },
+  basedOn: { type: String, required: false },
+  adjustmentType: { type: String, enum: adjustmentTypes, default: 'none' },
+  adjustmentOperation: { type: String, enum: adjustmentOperations, default: 'none' },
+  adjustmentValue: { type: Number },
+  perProductAdjustments: {
+    type: [
+      {
+        id: { type: String, required: true },
+        value: { type: Number, required: true },
+        type: { type: String, enum: adjustmentTypes },
+        operation: { type: String, enum: adjustmentOperations },
+      },
+    ],
+    default: [],
+  },
+  products: { type: [String], required: true },
+  selectionType: { type: String, enum: selectionType, default: 'all' },
 };
 module.exports = { PricingProfileSchema }; 
