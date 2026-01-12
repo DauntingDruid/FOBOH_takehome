@@ -20,7 +20,7 @@ export default function Home() {
 
   const reloadProfiles = () => {
     fetchPricingProfiles().then((data) => {
-      setPricingProfiles(data);
+      setPricingProfiles(data || []);
       setLoading(false);
     });
   };

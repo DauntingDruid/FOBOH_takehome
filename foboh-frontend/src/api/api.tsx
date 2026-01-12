@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:3000';
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
 
 // Pricing Profiles
 export const fetchPricingProfiles = async () => {  
@@ -8,7 +8,7 @@ export const fetchPricingProfiles = async () => {
         return data;
     } catch (error) {
         console.error('Error fetching pricing profiles:', error);
-        return null;
+        return [];
     }
 } 
 
